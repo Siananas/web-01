@@ -12,7 +12,7 @@ import { parseUrl } from "./utils";
     constructor() {
       // TODO #extends: call super(template)
       super(template)
-      var params = parseUrl();
+      const params = parseUrl();
       // TODO #import-html: assign template to this.template
       this.name = params.name;
       this.size = parseInt(params.size);
