@@ -61,27 +61,20 @@ export class GameComponent extends Component {
 
           // create cards out of the config
           this._cards = [];
-          // TODO #functional-programming: use Array.map() instead.
-          for (let i in this._config.ids) {
-            this._cards[i] = new CardComponent(this._config.ids[i]);
-          }
+          // TODOne #functional-programming: use Array.map() instead.
+           this._cards = this._config.ids.map(id => new CardComponent(id));
 
-          // TODO #functional-programming: use Array.forEach() instead.
+          // TODOne #functional-programming: use Array.forEach() instead.
           // TODO #let-const: replace var with let.
-          for (let i in this._cards) {
-            let card = this._cards[i];
-
-            this._boardElement.appendChild(card.getElement());
-            card.getElement().addEventListener(
-                "click",
-                // TODO #arrow-function: use arrow function instead.
-                function () {
-                  this._flipCard(card);
-                }.bind(this)
-            );
+           Object.values(this._cards).forEach(card => {
+             this._boardElement.appendChild(card.getElement());
+             card.getElement().addEventListener("click", () => {
+               this._flipCard(card);
+             });
+           });
 
             // TODO #let-const: extract function _appendCard (ie: copy its body here and remove the function)
-          }
+
 
           this.start();
         }
