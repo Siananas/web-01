@@ -1,4 +1,4 @@
-// TODO #import-html: use ES default imports to import welcome.html as template
+// TODOne #import-html: use ES default imports to import welcome.html as template
 import template from "../views/welcome.html";
 import { Component } from "./component";
 // TODOne #export-functions: remove the IIFE
@@ -27,8 +27,8 @@ export class WelcomeComponent extends Component{
 
         form.addEventListener(
             "submit",
-            // TODO #arrow-function: use arrow function instead.
-            function (event) {
+            // TODOne #arrow-function: use arrow function instead.
+            (event) => {
                 event.preventDefault();
                 if (form.checkValidity() === false) {
                     event.stopPropagation();
@@ -39,7 +39,7 @@ export class WelcomeComponent extends Component{
 
                     this._startGame(name, size);
                 }
-            }.bind(this),
+            },
             false
         )
 
@@ -49,10 +49,12 @@ export class WelcomeComponent extends Component{
 
     // TODO #class: turn function into a method of WelcomeComponent
     _startGame(name, size) {
-        // TODO #spa: replace with './#game'
+        // TODOne #spa: replace with './#game'
          const gamePage = "./#game";
-        // TODO #template-literals:  use template literals (backquotes)
-        window.location = gamePage + "?name=" + name + "&size=" + size;
+        // TODOne #template-literals:  use template literals (backquotes)
+        //window.location = gamePage + "?name=" + name + "&size=" + size;
+        window.location = `${gamePage}?name=${name}&size=${size}`;
+
     }
 }
 

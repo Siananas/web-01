@@ -55,7 +55,7 @@ export class GameComponent extends Component {
   init() {
     this.fetchConfig(
         // TODO #arrow-function: use arrow function instead.
-        function (config) {
+         (config) => {
           this._config = config;
           this._boardElement = document.querySelector(".cards");
 
@@ -84,7 +84,7 @@ export class GameComponent extends Component {
           }
 
           this.start();
-        }.bind(this)
+        }
     );
   }
 
@@ -95,9 +95,9 @@ export class GameComponent extends Component {
     card.getElement().addEventListener(
         "click",
         // TODO #arrow-function: use arrow function instead.
-        function () {
+        () => {
           this._flipCard(card);
-        }.bind(this)
+        }
     );
 
   }
@@ -107,22 +107,22 @@ export class GameComponent extends Component {
   start() {
     this._startTime = Date.now();
     let seconds = 0;
-    // TODO #template-literals:  use template literals (backquotes)
+    // TODOne #template-literals:  use template literals (backquotes)
     document.querySelector("nav .navbar-title").textContent =
         `Player: ${this._name}. Elapsed time: ${seconds++}`;
 
     this._timer = setInterval(
-        // TODO #arrow-function: use arrow function instead.
-        function () {
-          // TODO #template-literals:  use template literals (backquotes)
+        // TODOne #arrow-function: use arrow function instead.
+         () => {
+          // TODOne #template-literals:  use template literals (backquotes)
           document.querySelector("nav .navbar-title").textContent =
               "Player: " + this._name + ". Elapsed time: " + seconds++;
-        }.bind(this),
+        },
         1000
     );
   }
 
-  // TODO #class: turn function into a method of GameComponent
+  // TODOne #class: turn function into a method of GameComponent
   /* method GameComponent.fetchConfig */
   fetchConfig(cb) {
     const xhr =
@@ -130,11 +130,11 @@ export class GameComponent extends Component {
             ? new XMLHttpRequest()
             : new ActiveXObject("Microsoft.XMLHTTP");
 
-    // TODO #template-literals:  use template literals (backquotes)
-    xhr.open("get", environment.api.host + "/board?size=" + this._size, true);
+    // TODOne #template-literals:  use template literals (backquotes)
+    xhr.open("get", `${environment.api.host}/board?size=${this._size}`, true);
 
-    // TODO #arrow-function: use arrow function instead.
-    xhr.onreadystatechange = function () {
+    // TODOnen #arrow-function: use arrow function instead.
+    xhr.onreadystatechange =  () => {
       let status;
       let data;
       // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
@@ -161,21 +161,13 @@ export class GameComponent extends Component {
     clearInterval(this._timer);
 
     setTimeout(
-        // TODO #arrow-function: use arrow function instead.
-        function () {
-          // TODO #spa: replace with './#score'
+        // TODOne #arrow-function: use arrow function instead.
+         () => {
+          // TODOne #spa: replace with './#score'
           const scorePage = "./#score";
-          // TODO #template-literals:  use template literals (backquotes)
-          window.location =
-              scorePage +
-              "?name=" +
-              this._name +
-              "&size=" +
-              this._size +
-              "&time=" +
-              timeElapsedInSeconds;
-        }.bind(this),
-        750
+          // TODOne #template-literals:  use template literals (backquotes)
+          window.location = `${scorePage}?name=${this._name}&size=${this._size}&time=${timeElapsedInSeconds}`;
+        },750
     );
   }
 
@@ -218,8 +210,8 @@ export class GameComponent extends Component {
         // cards did not match
         // wait a short amount of time before hiding both cards
         setTimeout(
-            // TODO #arrow-function: use arrow function instead.
-            function () {
+            // TODOne #arrow-function: use arrow function instead.
+             () => {
               // hide the cards
               this._flippedCard.flip();
               card.flip();
@@ -227,7 +219,7 @@ export class GameComponent extends Component {
 
               // reset flipped card for the next turn.
               this._flippedCard = null;
-            }.bind(this),
+            },
             500
         );
       }
