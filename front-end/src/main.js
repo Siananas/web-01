@@ -3,15 +3,23 @@
 // TODO #import-css: use ES side-effect imports to import styles/style.css
 
 import { Router } from "./app/scripts/router";
+import { NavbarComponent} from "./app/components/navbar/navbar.component";
 import { WelcomeComponent } from "./app/components/welcome/welcome.component";
 import { GameComponent } from "./app/components/game/game.component";
 import { ScoreComponent } from "./app/components/score/score.component";
+import { FooterComponent } from "./app/components/footer/footer.component";
 import "/node_modules/bootstrap/dist/css/bootstrap.css"
 import "./app/styles/style.css"
+
+customElements.define("my-navbar", NavbarComponent);
+customElements.define("my-footer", FooterComponent);
 
 const outlet = document.querySelector("#content-outlet");
 const router = new Router(outlet);
 router
+
+
+
   .register("", {
     component: WelcomeComponent,
     // TODO #import-html: remove the templateUrl property.
