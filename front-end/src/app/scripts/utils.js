@@ -3,4 +3,4 @@ export function parseUrl(url = window.location.href) {
       .split("&")
       .map((q) => q.split("="))
       .reduce((params, [k, v]) => ({ ...params, [k]: v }), {});
-}
+}""
